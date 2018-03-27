@@ -35,7 +35,7 @@ const int NUMB_FORKS= NUMB_PHILOSOPHERS+1;	//success, it works
 //how much these pigs eat, make it large enough to force failure
 const int NUMB_ROUNDS = 100000;
 
-Semaphore s_philosophers(NUMB_PHILOSOPHERS);
+//Semaphore s_philosophers(NUMB_PHILOSOPHERS);
 Semaphore s_forks(NUMB_FORKS);
 
 mutex m;
@@ -50,24 +50,23 @@ void philosopher(int i){
 	report(string("Philo" + to_string(i) + " starting"));
 
 	while(nr-- >0){
-		//report(string("Philo" + to_string(i) + " thinking"));
+//		report(string("Philo" + to_string(i) + " thinking"));
 		
 		s_forks.wait();	//get first fork
 		s_forks.wait(); //get second
 
-		//report(string("Philo" + to_string(i) + " has forks eating"));
+//		report(string("Philo" + to_string(i) + " has forks eating"));
 		
 		s_forks.signal();	//put down fork
 		s_forks.signal(); //put down fork	
 
-		//report(string("Philo" + to_string(i) + " has put down forks"));
+//		report(string("Philo" + to_string(i) + " has put down forks"));
 	}	
 	report(string("Philo" + to_string(i) + " stopping"));
 
 }
 
-int main() {
-	
+int main() {	
 	cout << "Starting to eat"<< endl; //
 
 	thread p1(philosopher, 1);
@@ -85,7 +84,4 @@ int main() {
 	cout <<endl<< "Done Eating" <<endl; //
 
     return 0;
-	
-	
-	
 }
